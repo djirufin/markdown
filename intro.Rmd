@@ -1,0 +1,20 @@
+---
+title: "Hello R Markdown"
+author: "Rufin DJI"
+date: "23/12/2019"
+output: html_document
+---
+
+This is a paragraph in R MarkDown document.
+
+Below is a code chunk:
+
+```{r}
+fit <- lm(dist ~ speed, data = cars)
+b <- coef(fit)
+plot(cars)
+abline(fit)
+```
+
+
+The slot of the regression is `r b[1] `.
