@@ -1,0 +1,18 @@
+---
+title: "CDR report"
+author: "Rufin DJI"
+date: "23/12/2019"
+output: html_document
+---
+Display du graph par Bundle
+```{r echo=FALSE}
+library(readr)
+library(dplyr)
+library(ggplot2)
+cdr <- read_csv("export.csv", col_names = TRUE)
+cdrInter <- filter(cdr, MODULE=='INTLBUNDLE', STATUS_REASON == 'BUNDLE_SUCCESS')
+cdrInterStatus <- group_by(cdrInter, BUNDLE_NAME)
+cdrInterStatus <- summarise(cdrInterStatus, n=n())
+ggplot(data=cdrInterStatus) + geom_col(mapping = aes(x=BUNDLE_NAME, y=n), fill="red")
+
+```
